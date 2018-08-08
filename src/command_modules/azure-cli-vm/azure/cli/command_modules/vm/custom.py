@@ -1479,7 +1479,6 @@ def _get_vault_id_from_name(cli_ctx, client, vault_name):
 
 
 def get_vm_format_secret(cmd, secrets, certificate_store=None, keyvault=None, resource_group_name=None):
-    from azure.cli.core.profiles import ResourceType
     from azure.keyvault import KeyVaultId
     import re
     client = get_mgmt_service_client(cmd.cli_ctx, ResourceType.MGMT_KEYVAULT).vaults

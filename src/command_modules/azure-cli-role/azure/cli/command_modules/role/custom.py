@@ -1074,7 +1074,8 @@ def create_service_principal_for_rbac(
 
 
 def _get_keyvault_client(cli_ctx):
-    from azure.cli.core._profile import Profile, ResourceType, get_api_version
+    from azure.cli.core._profile import Profile 
+    from azure.cli.core.profiles import get_api_version, ResourceType
     from azure.keyvault import KeyVaultAuthentication, KeyVaultClient
     version = str(get_api_version(cli_ctx, ResourceType.DATA_KEYVAULT))
 
