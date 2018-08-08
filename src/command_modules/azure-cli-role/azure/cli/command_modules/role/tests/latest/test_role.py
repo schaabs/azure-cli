@@ -13,7 +13,7 @@ import mock
 import unittest
 
 from azure_devtools.scenario_tests import AllowLargeResponse, record_only
-
+from azure.cli.core.profiles import ResourceType
 from azure.cli.testsdk import ScenarioTest, LiveScenarioTest, ResourceGroupPreparer, KeyVaultPreparer
 
 

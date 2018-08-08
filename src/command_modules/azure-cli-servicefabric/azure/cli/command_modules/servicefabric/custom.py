@@ -1114,7 +1114,7 @@ def _create_certificate(cmd,
         if certificate_file is not None:
             vault_name = _get_vault_name(resource_group_name, vault_name)
             logger.info("Creating key vault")
-            
+
             vault = _create_keyvault(
                 cmd, cli_ctx, vault_resource_group_name, vault_name, location, enabled_for_deployment=True).result()
             vault_uri = vault.properties.vault_uri
@@ -1148,7 +1148,6 @@ def _create_certificate(cmd,
 
             policy = _get_default_policy(cli_ctx, certificate_subject_name)
             logger.info("Creating self-signed certificate")
-            #_create_self_signed_key_vault_certificate.__doc__ = KeyVaultClient.create_certificate.__doc__
             _create_self_signed_key_vault_certificate.__doc__ = get_sdk(cli_ctx, ResourceType.DATA_KEYVAULT, 'key_vault_client#KeyVaultClient').__doc__
             result = _create_self_signed_key_vault_certificate(
                 cli_ctx, vault_uri, certificate_name, policy, certificate_output_folder=certificate_output_folder)
@@ -1589,6 +1588,7 @@ def _create_self_signed_key_vault_certificate(cli_ctx, vault_base_url, certifica
 def _get_keyVault_not_arm_client(cli_ctx):
     from azure.cli.core._profile import Profile
     version = str(get_api_version(cli_ctx, ResourceType.DATA_KEYVAULT))
+
     def get_token(server, resource, scope):  # pylint: disable=unused-argument
         return Profile(cli_ctx=cli_ctx).get_login_credentials(resource)[0]._token_retriever()  # pylint: disable=protected-access
 
@@ -1627,7 +1627,7 @@ def _create_keyvault(cmd,
     KeyVaultSkuName = cmd.get_models('SkuName', resource_type=ResourceType.MGMT_KEYVAULT)
 
     if not sku:
-        sku= KeyVaultSkuName.standard.value
+        sku = KeyVaultSkuName.standard.value
 
     if no_self_perms:
         access_policies = []
@@ -1687,6 +1687,7 @@ def _create_keyvault(cmd,
     return client.create_or_update(resource_group_name=resource_group_name,
                                    vault_name=vault_name,
                                    parameters=parameters)
+
 
 # pylint: disable=inconsistent-return-statements
 def _get_current_user_object_id(graph_client):
