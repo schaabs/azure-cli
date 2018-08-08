@@ -99,7 +99,8 @@ def check_existence(cli_ctx, value, resource_group, provider_namespace, resource
 
 
 def create_keyvault_data_plane_client(cli_ctx):
-    from azure.cli.core._profile import Profile, ResourceType, get_api_version
+    from azure.cli.core._profile import Profile
+    from azure.cli.core.profiles import get_api_version, ResourceType
     version = str(get_api_version(cli_ctx, ResourceType.DATA_KEYVAULT))
 
     def get_token(server, resource, scope):  # pylint: disable=unused-argument
